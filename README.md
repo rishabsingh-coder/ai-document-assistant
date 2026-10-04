@@ -124,12 +124,12 @@ ai-document-assistant/
 │   ├── qa_pipeline.py
 │   └── build_index.py
 │
-├── .env
+├── .env.example
 ├── .gitignore
 ├── DECISIONS.md
 ├── README.md
 └── requirements.txt
-
+```
 ## Running the Project
 
 Create and activate the Python environment:
@@ -137,12 +137,12 @@ Create and activate the Python environment:
 ```bash
 python3.11 -m venv .venv311
 source .venv311/bin/activate
-
+```
 Install the required dependencies:
 
 ```bash
 pip install -r requirements.txt
-
+```
 Create a .env file in the project root and add your OpenRouter API key:
 
 OPENROUTER_API_KEY=your_api_key_here
@@ -151,7 +151,7 @@ Run the Streamlit application:
 
 ```bash
 streamlit run src/app.py
-
+```
 The application will open in your browser.
 
 Upload a PDF document using the file uploader and then enter
