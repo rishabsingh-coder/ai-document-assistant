@@ -18,13 +18,13 @@ I tested two chunking configurations.
 
 - Chunk size: 500 characters
 - Overlap: 0 characters
-- Number of chunks: 132
+- Number of chunks: 13
 
 ### Configuration B — Overlapping Chunks
 
 - Chunk size: 500 characters
 - Overlap: 100 characters
-- Number of chunks: 160
+- Number of chunks: 16
 
 ### Why test overlapping chunks?
 
@@ -42,11 +42,11 @@ I tested Configuration B using several questions.
 
 | Question | Top Page | Score | Relevant? |
 |---|---:|---:|---|
-| What are the topics in the Minor exam? | 1 | 0.4062 | Yes |
-| What is 2's complement? | 7 | 0.6237 | Yes |
-| What are universal gates? | 14 | 0.4843 | Yes |
-| What is a Karnaugh map used for? | 16 | 0.5563 | Yes |
-| Who is the CEO of Google? | 14 | 0.1680 | No answer in document |
+| What are the opening hours of the Student Support Desk? | 1 | 0.7447 | Yes |
+| What broad areas does GDG On Campus USAR organize learning activities in? | 1 | 0.8033 | Yes |
+| Does attending a workshop automatically provide a certificate? | 1 | 0.7449 | Yes |
+| What should a project repository include according to the handbook? | 2 | 0.5827 | Yes |
+| Who is the current community lead? | 2 | 0.4152 | No answer in document |
 
 The answerable questions retrieved passages containing
 information relevant to the questions.
@@ -114,16 +114,3 @@ The final output displays:
 This makes the answer easier to verify.
 
 ---
-
-## 8. Known Observation
-
-For the question "what are the topics in minor exam",
-retrieval worked correctly, but one run returned an empty
-LLM answer (`None`) even though relevant passages were
-retrieved.
-
-Other tested questions produced normal answers.
-
-This is being treated as an edge case rather than a retrieval
-failure because the relevant source passages were successfully
-identified.

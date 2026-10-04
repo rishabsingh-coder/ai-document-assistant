@@ -164,11 +164,11 @@ and generate an answer using the retrieved context.
 
 The system was tested with multiple questions, including:
 
-- What are the topics in the Minor exam?
-- What is 2's complement?
-- What are universal gates?
-- What is a Karnaugh map used for?
-- Who is the CEO of Google?
+- What are the opening hours of the Student Support Desk?
+- What broad areas does GDG On Campus USAR organize learning activities in?
+- Does attending a workshop automatically provide a certificate?
+- What should a project repository include according to the handbook?
+- Who is the current community lead?
 
 The final question is intentionally outside the document.
 
@@ -183,13 +183,13 @@ Two configurations were tested.
 
 - Chunk size: 500 characters
 - Overlap: 0 characters
-- Number of chunks: 132
+- Number of chunks: 13
 
 ### Configuration B
 
 - Chunk size: 500 characters
 - Overlap: 100 characters
-- Number of chunks: 160
+- Number of chunks: 16
 
 Configuration B was selected because overlapping chunks
 help preserve context between neighboring sections.
