@@ -6,6 +6,10 @@ to upload a PDF and ask questions about its contents.
 The system retrieves relevant passages from the document and uses
 an LLM to generate an answer based only on the retrieved context.
 
+## 📸 Demo
+
+![AI Document Assistant Demo](screenshots/demo.png)
+
 ## Features
 
 - Upload a PDF document
