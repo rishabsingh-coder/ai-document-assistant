@@ -1,0 +1,642 @@
+[
+  {
+    "page": 1,
+    "text": "AR107 - Basics of Computer Organization | Unit I\nGGSIPU USAR - First Year Minor Exam Notes   |   Page 1\nBASICS OF COMPUTER ORGANIZATION\nAR107 - Unit I: Digital Logic Fundamentals\nEXTENDED IN-DEPTH EDITION\nDetailed Notes for First-Year Minor Examinations\nGGSIPU - University School of Automation & Robotics (USAR)\nSyllabus coverage\nOfficial Unit I (Digital Logic Fundamentals, 8 lectures): Number Systems & Codes - binary, octal, decimal, \nhexadecimal, signed numbers using 1's and 2's complement, BCD"
+  },
+  {
+    "page": 1,
+    "text": "ems & Codes - binary, octal, decimal, \nhexadecimal, signed numbers using 1's and 2's complement, BCD, ASCII and Gray code; Boolean Algebra and \nLogic Gates - postulates and theorems, truth tables, basic and universal gates, SOP/POS, K-maps for 2 to 4 \nvariables; Combinational Logic Design - half/full adders, subtractors, multiplexers, demultiplexers, encoders, \ndecoders and comparators.\nHow to use these notes\nFirst understand each rule, then reproduce the truth table or conversion method without"
+  },
+  {
+    "page": 1,
+    "text": " these notes\nFirst understand each rule, then reproduce the truth table or conversion method without looking. For K-maps and \ncombinational circuits, solve at least 3-5 problems by hand. In a Minor exam, showing steps usually matters as \nmuch as the final answer.\nPrepared as syllabus-aligned study notes. Use your class instructions for the exact Minor-exam pattern and weightage."
+  },
+  {
+    "page": 2,
+    "text": "AR107 - Basics of Computer Organization | Unit I\nGGSIPU USAR - First Year Minor Exam Notes   |   Page 2\n1. Unit I at a Glance\nUnit I develops the digital-logic foundation needed to understand how a CPU represents data and how basic \nhardware blocks are built. The unit can be studied in three connected parts: representations of data, Boolean \nsimplification, and combinational-circuit design.\nSyllabus-Aligned Checklist\n Number systems: binary, octal, decimal and hexadecimal.\n Signed numbers: 1's"
+  },
+  {
+    "page": 2,
+    "text": "us-Aligned Checklist\n Number systems: binary, octal, decimal and hexadecimal.\n Signed numbers: 1's complement and 2's complement.\n Codes: BCD, ASCII and Gray code.\n Boolean algebra: postulates, theorems and truth tables.\n Logic gates: basic gates and universal NAND/NOR gates.\n SOP and POS forms; minterms and maxterms.\n Karnaugh maps for 2, 3 and 4 variables.\n Combinational design: adders, subtractors, multiplexers, demultiplexers, encoders, decoders and \ncomparators.\nMinor-Exam Study Pri"
+  },
+  {
+    "page": 2,
+    "text": "subtractors, multiplexers, demultiplexers, encoders, decoders and \ncomparators.\nMinor-Exam Study Priority\nPriority Topics What you must be able to do\nVery High Number conversions; complements Convert correctly, show steps, state n-bit \nrange and identify overflow.\nVery High Boolean laws; K-maps\nSimplify expressions and move between \ntruth table, minterms/maxterms and K-\nmap.\nVery High Adders/subtractors; MUX/decoder Write truth table, derive expressions and \nexplain circuit operation.\nHigh BCD, "
+  },
+  {
+    "page": 2,
+    "text": "actors; MUX/decoder Write truth table, derive expressions and \nexplain circuit operation.\nHigh BCD, ASCII, Gray code Encode/decode and remember key \nproperties.\nHigh DEMUX, encoder, comparator Explain purpose, truth table and \napplications.\nCore idea\nA digital system uses discrete logic levels. Binary digits become Boolean variables; Boolean expressions become \ngates; gates are connected to form combinational building blocks.\n2. Number Systems and Positional Representation\nA number system is def"
+  },
+  {
+    "page": 2,
+    "text": "ombinational building blocks.\n2. Number Systems and Positional Representation\nA number system is defined by its radix (base). In a positional number system, the value of a digit depends on \nboth the digit and its position.\n(d_n ... d_1 d_0 . d_-1 d_-2)_r = sum(d_i * r^i)\nSystem Base (r) Allowed digits Example\nBinary 2 0, 1 101101.01_2\nOctal 8 0-7 735_8\nDecimal 10 0-9 259_10\nHexadecimal 16 0-9, A-F 3A7_16\nHex digit values\nA=10, B=11, C=12, D=13, E=14, F=15. One hexadecimal digit corresponds to ex"
+  },
+  {
+    "page": 2,
+    "text": " 3A7_16\nHex digit values\nA=10, B=11, C=12, D=13, E=14, F=15. One hexadecimal digit corresponds to exactly four binary bits."
+  },
+  {
+    "page": 3,
+    "text": "AR107 - Basics of Computer Organization | Unit I\nGGSIPU USAR - First Year Minor Exam Notes   |   Page 3\n2.1 Converting Any Base to Decimal\nMultiply each digit by the corresponding power of the base and add the results. Positions to the left of the radix \npoint use non-negative powers; positions to the right use negative powers.\nSolved Example 2.1\nQuestion: Convert (101101.011)_2 to decimal.\nInteger part = 1*2^5 + 0*2^4 + 1*2^3 + 1*2^2 + 0*2^1 + 1*2^0 = 32+8+4+1 = 45.\nFractional part = 0*2^-1 + 1"
+  },
+  {
+    "page": 3,
+    "text": "r part = 1*2^5 + 0*2^4 + 1*2^3 + 1*2^2 + 0*2^1 + 1*2^0 = 32+8+4+1 = 45.\nFractional part = 0*2^-1 + 1*2^-2 + 1*2^-3 = 1/4 + 1/8 = 0.375.\nTherefore, (101101.011)_2 = (45.375)_10.\nSolved Example 2.2\nQuestion: Convert (3A7)_16 to decimal.\n3*16^2 + A*16^1 + 7*16^0 = 3*256 + 10*16 + 7 = 768+160+7 = 935.\nTherefore, (3A7)_16 = (935)_10.\n2.2 Decimal Integer to Another Base: Repeated Division\nRepeatedly divide the decimal integer by the target base. Record every remainder. Read the remainders from \nbottom"
+  },
+  {
+    "page": 3,
+    "text": "ide the decimal integer by the target base. Record every remainder. Read the remainders from \nbottom to top.\nSolved Example 2.3\nQuestion: Convert (45)_10 to binary, octal and hexadecimal.\nBinary: 45/2 gives remainders 1,0,1,1,0,1 (read upward) => 101101_2.\nOctal: 45/8 = 5 remainder 5; 5/8 = 0 remainder 5 => 55_8.\nHex: 45/16 = 2 remainder 13(D) => 2D_16.\n2.3 Decimal Fraction to Another Base: Repeated Multiplication\nRepeatedly multiply the fractional part by the target base. Each integer part prod"
+  },
+  {
+    "page": 3,
+    "text": "ed Multiplication\nRepeatedly multiply the fractional part by the target base. Each integer part produced becomes the next digit \nafter the radix point. Stop when the fraction becomes zero or when the desired precision is reached.\nSolved Example 2.4\nQuestion: Convert (0.625)_10 to binary.\n0.625*2 = 1.250 -> first bit 1, remaining fraction 0.250.\n0.250*2 = 0.500 -> next bit 0, remaining fraction 0.500.\n0.500*2 = 1.000 -> next bit 1, remaining fraction 0.\nSo, (0.625)_10 = (0.101)_2.\n2.4 Fast Binary"
+  },
+  {
+    "page": 3,
+    "text": "00.\n0.500*2 = 1.000 -> next bit 1, remaining fraction 0.\nSo, (0.625)_10 = (0.101)_2.\n2.4 Fast Binary-Octal-Hex Conversion\nBinary to octal: group bits in sets of 3 from the radix point outward. Binary to hexadecimal: group in sets of 4. Add \nleading or trailing zeros only to complete a group; they do not change the value.\nBinary Octal Binary Hex\n000 0 0000 0\n001 1 0001 1\n010 2 0010 2\n011 3 0011 3\n100 4 0100 4\n101 5 0101 5\n110 6 0110 6"
+  },
+  {
+    "page": 3,
+    "text": "00 4 0100 4\n101 5 0101 5\n110 6 0110 6"
+  },
+  {
+    "page": 4,
+    "text": "AR107 - Basics of Computer Organization | Unit I\nGGSIPU USAR - First Year Minor Exam Notes   |   Page 4\nBinary Octal Binary Hex\n111 7 0111 7\n1000 8\n1001 9\n1010 A\n1011 B\n1100 C\n1101 D\n1110 E\n1111 F\nSolved Example 2.5\nQuestion: Convert (1101011110.1011)_2 to octal and hexadecimal.\nOctal grouping: 001 101 011 110 . 101 100 => 1 5 3 6 . 5 4 = (1536.54)_8.\nHex grouping: 0011 0101 1110 . 1011 => 3 5 E . B = (35E.B)_16.\nExam check\nAlways write the base as a subscript or in brackets. A correct digit str"
+  },
+  {
+    "page": 4,
+    "text": " B = (35E.B)_16.\nExam check\nAlways write the base as a subscript or in brackets. A correct digit string without a base can be ambiguous.\n2.5 Deeper Understanding of Positional Numbers\nThe radix point separates positive-power positions from negative-power positions. For an n-digit integer in base r, \nthe leftmost digit carries the largest positional weight. A digit is legal only when it is smaller than the radix; \ntherefore 10201 is valid in base 3, but 10301 is not because digit 3 is not allowed"
+  },
+  {
+    "page": 4,
+    "text": "than the radix; \ntherefore 10201 is valid in base 3, but 10301 is not because digit 3 is not allowed in base 3.\nPosition ... 3 2 1 0 -1 -2 ...\nWeight in \nbase r ... r^3 r^2 r^1 r^0 r^-1 r^-2 ...\nImportant vocabulary\nMSD/MSB = most significant digit/bit; LSD/LSB = least significant digit/bit. The significance of a bit is its positional \nweight, not simply whether it is 0 or 1.\nSolved Example 2.6\nQuestion: Convert (572.34)_8 to decimal.\nUse powers of 8 on both sides of the radix point.\n5*8^2 + 7*8"
+  },
+  {
+    "page": 4,
+    "text": "estion: Convert (572.34)_8 to decimal.\nUse powers of 8 on both sides of the radix point.\n5*8^2 + 7*8^1 + 2*8^0 + 3*8^-1 + 4*8^-2\n= 320 + 56 + 2 + 0.375 + 0.0625 = 378.4375.\nTherefore, (572.34)_8 = (378.4375)_10.\n2.6 Fractional Conversions, Precision and Truncation\nAn integer conversion by repeated division must terminate because the quotient eventually becomes zero. A \nfractional conversion may terminate or may repeat indefinitely. For example, 0.1_10 does not have a finite binary \nrepresentatio"
+  },
+  {
+    "page": 4,
+    "text": "rminate or may repeat indefinitely. For example, 0.1_10 does not have a finite binary \nrepresentation. In such cases the question normally specifies a required number of fractional bits; keep the \nrequested precision and state that the result is approximate."
+  },
+  {
+    "page": 5,
+    "text": "AR107 - Basics of Computer Organization | Unit I\nGGSIPU USAR - First Year Minor Exam Notes   |   Page 5\nSolved Example 2.7\nQuestion: Convert (0.1)_10 to binary up to 6 fractional bits.\n0.1*2=0.2 -> 0; 0.2*2=0.4 -> 0; 0.4*2=0.8 -> 0.\n0.8*2=1.6 -> 1; 0.6*2=1.2 -> 1; 0.2*2=0.4 -> 0.\nThus (0.1)_10 is approximately (0.000110)_2 to 6 fractional bits; the pattern continues rather than terminating.\n2.7 Direct Conversion Strategy for Minor Exams\nGiven Required Fastest method\nBinary / octal / hex Decimal "
+  },
+  {
+    "page": 5,
+    "text": "rect Conversion Strategy for Minor Exams\nGiven Required Fastest method\nBinary / octal / hex Decimal Weighted positional expansion.\nDecimal integer Any base Repeated division by target base.\nDecimal fraction Any base Repeated multiplication by target base.\nBinary Octal Groups of 3 bits.\nBinary Hex Groups of 4 bits.\nOctal <-> Hex Other compact base Go through binary; regroup 3-bit and 4-bit \nblocks.\nSolved Example 2.8\nQuestion: Convert (7B.9)_16 to octal without using decimal.\nHex to binary: 7=011"
+  },
+  {
+    "page": 5,
+    "text": "\nSolved Example 2.8\nQuestion: Convert (7B.9)_16 to octal without using decimal.\nHex to binary: 7=0111, B=1011, 9=1001 -> 01111011.1001_2.\nRegroup in 3s: 001 111 011 . 100 100 -> 1 7 3 . 4 4.\nTherefore (7B.9)_16 = (173.44)_8.\nSelf-check\nWhen converting the integer part, estimate the magnitude. Example: 3A7_16 is a little above 3*256=768, so a \ndecimal result near 900 is reasonable. Magnitude checks catch many arithmetic slips.\n3. Signed Binary Numbers, 1's Complement and 2's Complement\nUnsigned n"
+  },
+  {
+    "page": 5,
+    "text": " catch many arithmetic slips.\n3. Signed Binary Numbers, 1's Complement and 2's Complement\nUnsigned n-bit numbers represent values from 0 to 2^n - 1. Signed binary systems use the most significant bit \n(MSB) to indicate the sign, but arithmetic is easiest with complement representations.\n3.1 1's Complement\nTo form the 1's complement of a binary number, invert every bit: 0 becomes 1 and 1 becomes 0.\n1's complement of N = bitwise NOT of N\nSolved Example 3.1\nQuestion: Find the 1's complement of 0010"
+  },
+  {
+    "page": 5,
+    "text": "\n1's complement of N = bitwise NOT of N\nSolved Example 3.1\nQuestion: Find the 1's complement of 00101101.\nOriginal:       00101101\nInvert bits:    11010010\nTherefore the 1's complement is 11010010.\n3.2 2's Complement\nTo form the 2's complement, take the 1's complement and add 1 to the least significant bit.\n2's complement of N = (1's complement of N) + 1"
+  },
+  {
+    "page": 6,
+    "text": "AR107 - Basics of Computer Organization | Unit I\nGGSIPU USAR - First Year Minor Exam Notes   |   Page 6\nSolved Example 3.2\nQuestion: Find the 8-bit 2's complement representation of -45.\n+45 = 00101101.\n1's complement = 11010010.\nAdd 1 => 11010011.\nHence -45 in 8-bit 2's complement is 11010011.\n3.3 Range of n-bit 2's Complement Numbers\n-2^(n-1)  to  +(2^(n-1) - 1)\nFor 8 bits, the range is -128 to +127. The asymmetry exists because zero has only one representation in 2's \ncomplement.\n3.4 Reading a"
+  },
+  {
+    "page": 6,
+    "text": "127. The asymmetry exists because zero has only one representation in 2's \ncomplement.\n3.4 Reading a Negative 2's Complement Number\nIf the MSB is 0, read the number normally. If the MSB is 1, the number is negative: take its 2's complement to find \nthe magnitude, then attach a minus sign.\nSolved Example 3.3\nQuestion: Interpret 11100110 as an 8-bit 2's complement number.\nMSB=1, so it is negative.\nInvert: 00011001; add 1: 00011010 = 26.\nTherefore, 11100110 represents -26.\n3.5 Subtraction Using 2's"
+  },
+  {
+    "page": 6,
+    "text": "nvert: 00011001; add 1: 00011010 = 26.\nTherefore, 11100110 represents -26.\n3.5 Subtraction Using 2's Complement\nTo calculate A - B using fixed n-bit arithmetic: represent A and B using n bits, take the 2's complement of B, add it \nto A, and discard any carry beyond n bits. If the n-bit result has MSB 1, interpret it as a negative 2's complement \nnumber.\nSolved Example 3.4\nQuestion: Compute 27 - 19 using 8-bit 2's complement.\n27 = 00011011; 19 = 00010011.\n2's complement of 19: 11101101.\n00011011 "
+  },
+  {
+    "page": 6,
+    "text": " using 8-bit 2's complement.\n27 = 00011011; 19 = 00010011.\n2's complement of 19: 11101101.\n00011011 + 11101101 = 1 00001000.\nDiscard the carry out. Result = 00001000 = 8.\nSolved Example 3.5\nQuestion: Compute 19 - 27 using 8-bit 2's complement.\n19 = 00010011; 27 = 00011011.\n2's complement of 27: 11100101.\n00010011 + 11100101 = 11111000.\nMSB is 1. Complement 11111000: invert 00000111, add 1 => 00001000 = 8.\nTherefore the result is -8.\n3.6 Overflow in Signed Addition\nOverflow occurs when the correc"
+  },
+  {
+    "page": 6,
+    "text": "000 = 8.\nTherefore the result is -8.\n3.6 Overflow in Signed Addition\nOverflow occurs when the correct mathematical result cannot fit in the available number of bits. In 2's \ncomplement addition, overflow can occur when two numbers of the same sign are added and the result has the \nopposite sign.\nFast overflow rule\nPositive + positive giving MSB 1 => overflow. Negative + negative giving MSB 0 => overflow. Adding numbers with \ndifferent signs cannot cause signed overflow."
+  },
+  {
+    "page": 6,
+    "text": "erflow. Adding numbers with \ndifferent signs cannot cause signed overflow."
+  },
+  {
+    "page": 7,
+    "text": "AR107 - Basics of Computer Organization | Unit I\nGGSIPU USAR - First Year Minor Exam Notes   |   Page 7\n3.7 Why 2's Complement Is Preferred\nBoth 1's complement and 2's complement use bit inversion to form negative values, but 2's complement has \nmajor hardware advantages: it has only one zero, addition uses the same binary adder for positive and negative \noperands, and subtraction can be performed by addition of the 2's complement.\nFeature 1's complement 2's complement\nNegative of a number Inver"
+  },
+  {
+    "page": 7,
+    "text": " by addition of the 2's complement.\nFeature 1's complement 2's complement\nNegative of a number Invert all bits Invert all bits and add 1\nZero representations Two: +0 and -0 One\nn-bit range -(2^(n-1)-1) to +(2^(n-1)-1) -2^(n-1) to +(2^(n-1)-1)\nAddition detail End-around carry may be needed Discard carry beyond n bits\nCommon computer arithmetic Less common Standard signed integer representation\n3.8 Addition in 1's Complement\nWhen adding 1's-complement signed numbers, any carry out of the MSB is ad"
+  },
+  {
+    "page": 7,
+    "text": "Addition in 1's Complement\nWhen adding 1's-complement signed numbers, any carry out of the MSB is added back to the LSB. This is called \nend-around carry. This rule is specific to 1's-complement arithmetic and should not be mixed with 2's-\ncomplement arithmetic.\nSolved Example 3.6\nQuestion: Using 4-bit 1's complement, add +5 and -3.\n+5 = 0101. +3 = 0011, so -3 in 1's complement = 1100.\n0101 + 1100 = 1 0001. There is a carry out of the MSB.\nAdd the end-around carry: 0001 + 1 = 0010 = +2.\nHence +5"
+  },
+  {
+    "page": 7,
+    "text": " = 1 0001. There is a carry out of the MSB.\nAdd the end-around carry: 0001 + 1 = 0010 = +2.\nHence +5 + (-3) = +2.\n3.9 Sign Extension and Fixed-Width Thinking\nBinary signed arithmetic is always interpreted at a fixed width. When a 2's-complement number is widened, copy \nthe sign bit into the new leading positions. This is sign extension. For example, 8-bit -5 is 11111011; as a 12-bit \nvalue it becomes 1111 11111011. Simply adding leading zeros would change the value and sign.\nSolved Example 3.7\nQ"
+  },
+  {
+    "page": 7,
+    "text": "mes 1111 11111011. Simply adding leading zeros would change the value and sign.\nSolved Example 3.7\nQuestion: Check overflow for 8-bit 2's-complement addition 100 + 50.\n100 = 01100100, 50 = 00110010.\nSum = 10010110. The operands are both positive but the 8-bit result has sign bit 1.\nThe mathematical sum 150 is outside the 8-bit signed range -128 to +127, so overflow has occurred.\nImportant: the carry out and signed overflow are different concepts.\nEdge case\nIn n-bit 2's complement, the most negat"
+  },
+  {
+    "page": 7,
+    "text": "ry out and signed overflow are different concepts.\nEdge case\nIn n-bit 2's complement, the most negative number -2^(n-1) has no positive counterpart at the same width. Example: \n-128 exists in 8 bits, but +128 does not. Taking the 2's complement of 10000000 therefore produces 10000000 \nagain.\n4. Digital Codes: BCD, ASCII and Gray Code\n4.1 BCD (8421 Binary Coded Decimal)\nIn 8421 BCD, each decimal digit is encoded separately using four bits. Only 0000 through 1001 are valid BCD \ndigit codes; 1010 t"
+  },
+  {
+    "page": 7,
+    "text": "git is encoded separately using four bits. Only 0000 through 1001 are valid BCD \ndigit codes; 1010 through 1111 are invalid for a single decimal digit.\nDecimal digit BCD Decimal digit BCD\n0 0000 5 0101"
+  },
+  {
+    "page": 8,
+    "text": "AR107 - Basics of Computer Organization | Unit I\nGGSIPU USAR - First Year Minor Exam Notes   |   Page 8\nDecimal digit BCD Decimal digit BCD\n1 0001 6 0110\n2 0010 7 0111\n3 0011 8 1000\n4 0100 9 1001\nSolved Example 4.1\nQuestion: Write decimal 59 in BCD.\nEncode each digit separately: 5 -> 0101, 9 -> 1001.\nTherefore 59_10 = 0101 1001 (BCD).\nDo not convert 59 directly to binary; 59_10 = 111011_2, which is not the same representation as BCD.\nCommon mistake\nBCD represents decimal digits one by one. Pure "
+  },
+  {
+    "page": 8,
+    "text": "s not the same representation as BCD.\nCommon mistake\nBCD represents decimal digits one by one. Pure binary represents the value as one binary number. They are \ngenerally different bit patterns.\n4.2 ASCII\nASCII (American Standard Code for Information Interchange) is a character code used to represent letters, digits, \npunctuation and control characters. Standard ASCII uses 7 bits and can represent 128 codes (0-127).\nCharacter Decimal ASCII Hex ASCII 7-bit binary\n0 48 30 0110000\n9 57 39 0111001\nA "
+  },
+  {
+    "page": 8,
+    "text": "128 codes (0-127).\nCharacter Decimal ASCII Hex ASCII 7-bit binary\n0 48 30 0110000\n9 57 39 0111001\nA 65 41 1000001\nZ 90 5A 1011010\na 97 61 1100001\nz 122 7A 1111010\nSpace 32 20 0100000\nUseful pattern\nASCII digits 0-9 occupy consecutive codes 48-57; uppercase A-Z occupy 65-90; lowercase a-z occupy 97-122.\n4.3 Gray Code\nGray code is a unit-distance code: consecutive code words differ in only one bit. This reduces ambiguity in \napplications where bits may not change at exactly the same instant, such "
+  },
+  {
+    "page": 8,
+    "text": "This reduces ambiguity in \napplications where bits may not change at exactly the same instant, such as position encoders.\nBinary to Gray Conversion\n The most significant Gray bit is the same as the most significant binary bit.\n Each next Gray bit is the XOR of two adjacent binary bits: G_i = B_(i+1) XOR B_i."
+  },
+  {
+    "page": 9,
+    "text": "AR107 - Basics of Computer Organization | Unit I\nGGSIPU USAR - First Year Minor Exam Notes   |   Page 9\nSolved Example 4.2\nQuestion: Convert binary 1011 to Gray code.\nB = 1 0 1 1.\nG3 = B3 = 1.\nG2 = B3 XOR B2 = 1 XOR 0 = 1.\nG1 = B2 XOR B1 = 0 XOR 1 = 1.\nG0 = B1 XOR B0 = 1 XOR 1 = 0.\nGray code = 1110.\nGray to Binary Conversion\n The most significant binary bit equals the most significant Gray bit.\n Each next binary bit equals the previous binary bit XOR the current Gray bit.\nSolved Example 4.3\nQu"
+  },
+  {
+    "page": 9,
+    "text": " Each next binary bit equals the previous binary bit XOR the current Gray bit.\nSolved Example 4.3\nQuestion: Convert Gray code 1110 to binary.\nB3 = G3 = 1.\nB2 = B3 XOR G2 = 1 XOR 1 = 0.\nB1 = B2 XOR G1 = 0 XOR 1 = 1.\nB0 = B1 XOR G0 = 1 XOR 0 = 1.\nBinary = 1011.\n4.4 BCD in More Detail\n8421 BCD is a weighted code because the four positions have weights 8, 4, 2 and 1. The six 4-bit combinations \n1010 through 1111 are unused for a single decimal digit. For a multi-digit number, keep a visible space be"
+  },
+  {
+    "page": 9,
+    "text": "hrough 1111 are unused for a single decimal digit. For a multi-digit number, keep a visible space between \neach 4-bit group so that digit boundaries are clear.\nDecimal Pure binary 8421 BCD\n9 1001 1001\n10 1010 0001 0000\n25 11001 0010 0101\n59 111011 0101 1001\n407 110010111 0100 0000 0111\nObservation\nBCD and pure binary are identical only for single decimal digits 0-9. From decimal 10 onward, the encodings \ngenerally differ because BCD preserves decimal digit boundaries.\n4.5 ASCII as a Character Re"
+  },
+  {
+    "page": 9,
+    "text": "odings \ngenerally differ because BCD preserves decimal digit boundaries.\n4.5 ASCII as a Character Representation\nASCII assigns a numeric code to a character; the bit pattern represents the code, not the visual shape of the \ncharacter. Therefore character digit '5' and numeric value 5 are different concepts: ASCII '5' is decimal code 53 \n(0110101 in 7-bit ASCII), whereas binary integer 5 is 101.\nSolved Example 4.4\nQuestion: Find the 7-bit ASCII binary codes for the text \"CAT\".\nC is decimal 67 -> "
+  },
+  {
+    "page": 9,
+    "text": "lved Example 4.4\nQuestion: Find the 7-bit ASCII binary codes for the text \"CAT\".\nC is decimal 67 -> 1000011.\nA is decimal 65 -> 1000001.\nT is decimal 84 -> 1010100.\nSo the character sequence is represented by three separate ASCII code words: 1000011 1000001 1010100."
+  },
+  {
+    "page": 10,
+    "text": "AR107 - Basics of Computer Organization | Unit I\nGGSIPU USAR - First Year Minor Exam Notes   |   Page 10\n4.6 Gray Code Sequence and the Unit-Distance Property\nDecimal 4-bit binary 4-bit Gray\n0 0000 0000\n1 0001 0001\n2 0010 0011\n3 0011 0010\n4 0100 0110\n5 0101 0111\n6 0110 0101\n7 0111 0100\n8 1000 1100\n9 1001 1101\n10 1010 1111\n11 1011 1110\n12 1100 1010\n13 1101 1011\n14 1110 1001\n15 1111 1000\nLook down the Gray-code column: between every two consecutive rows exactly one bit changes. This is why \nGray c"
+  },
+  {
+    "page": 10,
+    "text": "he Gray-code column: between every two consecutive rows exactly one bit changes. This is why \nGray coding is useful in mechanical and optical position encoders, where simultaneous changes in several binary \nbits could momentarily produce an incorrect intermediate reading.\nExam distinction\nBCD is a decimal-digit code; ASCII is a character code; Gray is a unit-distance code. They solve different \nrepresentation problems and should not be treated as alternative forms of ordinary binary arithmetic.\n"
+  },
+  {
+    "page": 10,
+    "text": "presentation problems and should not be treated as alternative forms of ordinary binary arithmetic.\n5. Boolean Algebra Fundamentals\nBoolean algebra deals with variables that take only two values: 0 and 1. In digital logic, 0 and 1 usually represent \ntwo voltage ranges. The principal operations are OR (+), AND (.) and NOT (overbar or prime).\nOperation Notation Result rule\nOR A + B 1 if at least one input is 1\nAND A.B or AB 1 only if all inputs are 1\nNOT A' complements/inverts the input\n5.1 Fundam"
+  },
+  {
+    "page": 10,
+    "text": " input is 1\nAND A.B or AB 1 only if all inputs are 1\nNOT A' complements/inverts the input\n5.1 Fundamental Postulates and Theorems\nLaw OR form AND form\nIdentity A + 0 = A A.1 = A\nNull/Dominance A + 1 = 1 A.0 = 0\nIdempotent A + A = A A.A = A\nComplement A + A' = 1 A.A' = 0"
+  },
+  {
+    "page": 11,
+    "text": "AR107 - Basics of Computer Organization | Unit I\nGGSIPU USAR - First Year Minor Exam Notes   |   Page 11\nLaw OR form AND form\nInvolution (A')' = A (A')' = A\nCommutative A+B = B+A AB = BA\nAssociative A+(B+C)=(A+B)+C A(BC)=(AB)C\nDistributive A+BC=(A+B)(A+C) A(B+C)=AB+AC\nAbsorption A+AB=A A(A+B)=A\nDe Morgan (A+B)' = A'B' (AB)' = A'+B'\nPrinciple of duality\nA valid Boolean identity remains valid if OR and AND are interchanged and 0 and 1 are interchanged. This is why \nmany laws appear in pairs.\n5.2 A"
+  },
+  {
+    "page": 11,
+    "text": "and AND are interchanged and 0 and 1 are interchanged. This is why \nmany laws appear in pairs.\n5.2 Algebraic Simplification Examples\nSolved Example 5.1\nQuestion: Simplify F = A + A'B.\nUse A + A'B = (A + A')(A + B) by distributive law.\n=(1)(A+B)=A+B.\nTherefore F = A + B.\nSolved Example 5.2\nQuestion: Simplify F = AB + AB' + A'B.\nAB + AB' = A(B+B') = A.\nSo F = A + A'B = A + B.\nTherefore the simplified expression is A+B.\nSolved Example 5.3\nQuestion: Apply De Morgan's theorem to (A + BC)'.\n(A+BC)' = "
+  },
+  {
+    "page": 11,
+    "text": "d expression is A+B.\nSolved Example 5.3\nQuestion: Apply De Morgan's theorem to (A + BC)'.\n(A+BC)' = A' . (BC)'\n(BC)' = B' + C'\nTherefore (A+BC)' = A'(B'+C').\n5.3 Understanding Boolean Laws Instead of Memorising Them\nBoolean algebra uses two-valued logic, so its addition and multiplication follow OR and AND rules rather than \nordinary arithmetic. For example, A+A=A and A.A=A. A useful test for any identity is to compare the conditions \nunder which both sides become 1, or to verify the identity by"
+  },
+  {
+    "page": 11,
+    "text": "identity is to compare the conditions \nunder which both sides become 1, or to verify the identity by a truth table.\nSolved Example 5.4\nQuestion: Verify the absorption law A + AB = A by reasoning.\nIf A=0, then A+AB=0+0=0, which equals A.\nIf A=1, then A+AB=1+B=1, which again equals A.\nTherefore the product AB is redundant whenever A is already present as an OR term.\n5.4 A Systematic Algebraic Simplification Method\n1. Remove constants using identity and dominance laws.\n2. Look for complements such "
+  },
+  {
+    "page": 11,
+    "text": "fication Method\n1. Remove constants using identity and dominance laws.\n2. Look for complements such as X+X'=1 or XX'=0.\n3. Factor common literals: AB+AC=A(B+C).\n4. Use absorption to remove redundant terms."
+  },
+  {
+    "page": 12,
+    "text": "AR107 - Basics of Computer Organization | Unit I\nGGSIPU USAR - First Year Minor Exam Notes   |   Page 12\n5. Apply De Morgan to complemented brackets one level at a time.\n6. Stop when the expression has fewer terms/literals and no obvious law reduces it further.\nSolved Example 5.5\nQuestion: Simplify F = A'B + AB + AB'.\nAB + AB' = A(B+B') = A.\nSo F=A'B+A.\nUsing A+A'B=A+B, the result is F=A+B.\nSolved Example 5.6\nQuestion: Simplify F=(A+B)(A+B').\nUse (X+Y)(X+Z)=X+YZ. Therefore F=A+BB'.\nSince BB'=0, "
+  },
+  {
+    "page": 12,
+    "text": " Example 5.6\nQuestion: Simplify F=(A+B)(A+B').\nUse (X+Y)(X+Z)=X+YZ. Therefore F=A+BB'.\nSince BB'=0, F=A.\nThis result can also be obtained by expansion followed by absorption.\n5.5 De Morgan on Multi-Level Expressions\nWhen a complement covers a bracket, complement every literal and interchange AND with OR. Work from the \noutside inward. Brackets must be respected; complementing a product inside a larger sum requires a second De \nMorgan step.\nSolved Example 5.7\nQuestion: Simplify Y=[(A+B')C]'.\nOute"
+  },
+  {
+    "page": 12,
+    "text": "rger sum requires a second De \nMorgan step.\nSolved Example 5.7\nQuestion: Simplify Y=[(A+B')C]'.\nOuter De Morgan: Y=(A+B')' + C'.\nThen (A+B')'=A'B.\nTherefore Y=A'B+C'.\nExam technique\nIn a Boolean simplification question, write the law beside the important transformation steps. This makes your \nmethod visible and helps avoid accidental use of ordinary algebra rules.\n6. Logic Gates and Truth Tables\nA logic gate is a physical digital circuit that implements a Boolean operation. A truth table lists t"
+  },
+  {
+    "page": 12,
+    "text": " logic gate is a physical digital circuit that implements a Boolean operation. A truth table lists the output for every \npossible input combination.\n6.1 Basic and Derived Gates\nGate Boolean expression Output is 1 when...\nAND Y=AB both inputs are 1\nOR Y=A+B at least one input is 1\nNOT Y=A' input is 0\nNAND Y=(AB)' not both inputs are 1\nNOR Y=(A+B)' both inputs are 0\nXOR Y=A'B+AB' inputs are different\nXNOR Y=AB+A'B' inputs are the same"
+  },
+  {
+    "page": 12,
+    "text": "t\nXNOR Y=AB+A'B' inputs are the same"
+  },
+  {
+    "page": 13,
+    "text": "AR107 - Basics of Computer Organization | Unit I\nGGSIPU USAR - First Year Minor Exam Notes   |   Page 13\nTwo-Input Gate Truth Table\nA B AND OR NAND NOR XOR XNOR\n0 0 0 0 1 1 0 1\n0 1 0 1 1 0 1 0\n1 0 0 1 1 0 1 0\n1 1 1 1 0 0 0 1\nNOT Gate Truth Table\nA A'\n0 1\n1 0\n6.2 NAND and NOR as Universal Gates\nA universal gate can be used alone to implement NOT, AND and OR, and therefore any Boolean function. Both \nNAND and NOR are universal.\nRequired function Using NAND only Using NOR only\nNOT A A NAND A = A' A"
+  },
+  {
+    "page": 13,
+    "text": " \nNAND and NOR are universal.\nRequired function Using NAND only Using NOR only\nNOT A A NAND A = A' A NOR A = A'\nA AND B First X=A NAND B, then Y=X NAND X Use De Morgan construction from NOR \ngates\nA OR B Invert A and B with NAND; NAND the \ninverted inputs First X=A NOR B, then Y=X NOR X\nSolved Example 6.1\nQuestion: Implement OR using NAND gates only.\nBy De Morgan, A+B = (A'B')'.\nGenerate A' using A NAND A and B' using B NAND B.\nNAND these results: Y = (A'B')' = A+B.\nTotal NAND gates required = 3"
+  },
+  {
+    "page": 13,
+    "text": "A NAND A and B' using B NAND B.\nNAND these results: Y = (A'B')' = A+B.\nTotal NAND gates required = 3.\nExam writing tip\nFor a gate question, write the Boolean expression and truth table even if a circuit sketch is also required. These two \nitems make the operation unambiguous.\n6.3 Gate Interpretation and Useful Patterns\nA truth table completely defines a combinational gate. AND behaves like an all-conditions detector, OR behaves \nlike an any-condition detector, and NOT reverses a logic level. NAN"
+  },
+  {
+    "page": 13,
+    "text": "conditions detector, OR behaves \nlike an any-condition detector, and NOT reverses a logic level. NAND and NOR are the complemented forms of \nAND and OR. XOR is especially important because it detects inequality for two bits; XNOR detects equality.\nGate Useful verbal interpretation Typical role\nAND All required inputs are 1 Enable/permission condition\nOR At least one input is 1 Combine alternative conditions\nNOT Reverse the logic value Generate complement\nXOR Inputs differ Sum/difference bit, par"
+  },
+  {
+    "page": 13,
+    "text": "conditions\nNOT Reverse the logic value Generate complement\nXOR Inputs differ Sum/difference bit, parity/inequality\nXNOR Inputs are equal Comparator equality stage"
+  },
+  {
+    "page": 14,
+    "text": "AR107 - Basics of Computer Organization | Unit I\nGGSIPU USAR - First Year Minor Exam Notes   |   Page 14\nGate Useful verbal interpretation Typical role\nNAND/NOR Complemented AND/OR Universal implementation\n6.4 Building Basic Gates Using NAND Only\nNOT A = A NAND A\nA AND B = (A NAND B) NAND (A NAND B)\nA OR B = (A NAND A) NAND (B NAND B)\nThese identities prove universality: once NOT, AND and OR can be built, any Boolean expression can be \nimplemented. The corresponding NOR-only constructions follow"
+  },
+  {
+    "page": 14,
+    "text": "e built, any Boolean expression can be \nimplemented. The corresponding NOR-only constructions follow from the dual form of De Morgan's theorem.\n6.5 Building Basic Gates Using NOR Only\nNOT A = A NOR A\nA OR B = (A NOR B) NOR (A NOR B)\nA AND B = (A NOR A) NOR (B NOR B)\nSolved Example 6.2\nQuestion: Show that XNOR is the equality detector for two inputs.\nXNOR expression is AB + A'B'.\nFor 00, the second term is 1; for 11, the first term is 1.\nFor 01 and 10, neither product term is 1.\nHence XNOR=1 exac"
+  },
+  {
+    "page": 14,
+    "text": " term is 1; for 11, the first term is 1.\nFor 01 and 10, neither product term is 1.\nHence XNOR=1 exactly when A and B are equal.\nCommon conceptual error\nXOR and OR are not the same. They differ for input 11: OR=1 but XOR=0. XOR means \"one or the other, but not \nboth\" for two inputs.\n7. SOP, POS, Minterms and Maxterms\n7.1 Product Term and Sum Term\n A product term is an AND of literals, e.g., A'BC.\n A sum term is an OR of literals, e.g., A + B' + C.\n A literal is a variable or its complement, e."
+  },
+  {
+    "page": 14,
+    "text": " A sum term is an OR of literals, e.g., A + B' + C.\n A literal is a variable or its complement, e.g., A or A'.\n7.2 Sum of Products (SOP)\nIn SOP form, multiple product terms are ORed together. Canonical SOP is a sum of minterms. A minterm \ncontains every variable exactly once and has value 1 for exactly one truth-table row.\nMinterm rule\nFor a truth-table row, write a variable uncomplemented when its value is 1 and complemented when its value is 0.\n7.3 Product of Sums (POS)\nIn POS form, multiple"
+  },
+  {
+    "page": 14,
+    "text": "its value is 1 and complemented when its value is 0.\n7.3 Product of Sums (POS)\nIn POS form, multiple sum terms are ANDed together. Canonical POS is a product of maxterms. A maxterm \ncontains every variable exactly once and has value 0 for exactly one truth-table row.\nMaxterm rule\nFor a truth-table row, write a variable uncomplemented when its value is 0 and complemented when its value is 1."
+  },
+  {
+    "page": 15,
+    "text": "AR107 - Basics of Computer Organization | Unit I\nGGSIPU USAR - First Year Minor Exam Notes   |   Page 15\n7.4 Standard Notation\nF(A,B,C) = Σm(1,2,5,7)     or     F(A,B,C) = ΠM(0,3,4,6)\nThe minterm indices list the rows where F=1. The maxterm indices list the rows where F=0. For a complete truth \ntable, the two sets are complementary.\nSolved Example 7.1\nQuestion: Write the canonical SOP for F(A,B,C)=Σm(1,2,5,7).\nm1=001 => A'B'C\nm2=010 => A'BC'\nm5=101 => AB'C\nm7=111 => ABC\nTherefore F=A'B'C + A'BC'"
+  },
+  {
+    "page": 15,
+    "text": "=Σm(1,2,5,7).\nm1=001 => A'B'C\nm2=010 => A'BC'\nm5=101 => AB'C\nm7=111 => ABC\nTherefore F=A'B'C + A'BC' + AB'C + ABC.\nSolved Example 7.2\nQuestion: For the same function, write canonical POS.\nRows not in the minterm list are 0,3,4,6.\nM0=000 => (A+B+C)\nM3=011 => (A+B'+C')\nM4=100 => (A'+B+C)\nM6=110 => (A'+B'+C)\nF=ΠM(0,3,4,6)=(A+B+C)(A+B'+C')(A'+B+C)(A'+B'+C).\n7.5 Canonical versus Standard Forms\nAn SOP expression is called canonical only when every product term is a minterm containing all variables. \nL"
+  },
+  {
+    "page": 15,
+    "text": "xpression is called canonical only when every product term is a minterm containing all variables. \nLikewise, a canonical POS contains only maxterms, each containing all variables. A simplified SOP such as \nA+B'C is still SOP, but it is not canonical if the function has variables A, B and C because the term A does not \ncontain B and C.\nForm Structure Each term contains all \nvariables? Built from truth-table rows\nCanonical SOP OR of minterms Yes Rows where F=1\nSimplified SOP OR of product terms No"
+  },
+  {
+    "page": 15,
+    "text": "uth-table rows\nCanonical SOP OR of minterms Yes Rows where F=1\nSimplified SOP OR of product terms Not necessarily After simplification\nCanonical POS AND of maxterms Yes Rows where F=0\nSimplified POS AND of sum terms Not necessarily After simplification\n7.6 From Truth Table to Sigma-m and Pi-M Notation\nNumber truth-table rows in ordinary binary order, with the leftmost variable treated as the most significant bit. \nRead the row number as a binary integer. Collect the row numbers for output 1 to o"
+  },
+  {
+    "page": 15,
+    "text": "significant bit. \nRead the row number as a binary integer. Collect the row numbers for output 1 to obtain the minterm list; collect \nthe output-0 rows to obtain the maxterm list.\nSolved Example 7.3\nQuestion: A 3-variable function is 1 for inputs 001, 010, 100 and 111. Write both canonical forms.\nThe 1-rows have decimal indices 1, 2, 4 and 7.\nTherefore F = Σm(1,2,4,7).\nThe remaining row indices are 0,3,5,6, so F = ΠM(0,3,5,6).\nThe two index sets are complementary because every truth-table row is "
+  },
+  {
+    "page": 15,
+    "text": " 0,3,5,6, so F = ΠM(0,3,5,6).\nThe two index sets are complementary because every truth-table row is either a 1-row or a 0-row.\n7.7 Expanding a Non-Canonical Term into Minterms\nIf a product term is missing a variable, multiply it by (X+X')=1. Example for variables A,B,C: AB is independent of \nC, so AB = AB(C+C') = ABC + ABC'. This converts the term into two minterms without changing the function."
+  },
+  {
+    "page": 16,
+    "text": "AR107 - Basics of Computer Organization | Unit I\nGGSIPU USAR - First Year Minor Exam Notes   |   Page 16\nSolved Example 7.4\nQuestion: Express F=A+B'C as canonical SOP for variables A,B,C.\nExpand A = A(B+B')(C+C'), producing minterms m4,m5,m6,m7.\nB'C has A missing: B'C(A+A') gives minterms m1 and m5.\nCombine duplicates: F=Σm(1,4,5,6,7).\nMinterm/maxterm memory aid\nFor a minterm (a 1-row), bit 1 -> uncomplemented variable and bit 0 -> complemented variable. For a maxterm (a 0-\nrow), the rule revers"
+  },
+  {
+    "page": 16,
+    "text": "ncomplemented variable and bit 0 -> complemented variable. For a maxterm (a 0-\nrow), the rule reverses: bit 0 -> uncomplemented, bit 1 -> complemented.\n8. Karnaugh Maps (K-Maps): 2 to 4 Variables\nA Karnaugh map is a graphical method for simplifying Boolean expressions. Adjacent cells differ in only one \nvariable because row and column labels are arranged in Gray-code order.\n8.1 Grouping Rules\n Place 1s in the cells corresponding to minterms for SOP simplification. For POS, place/use 0s correspo"
+  },
+  {
+    "page": 16,
+    "text": "ace 1s in the cells corresponding to minterms for SOP simplification. For POS, place/use 0s corresponding \nto maxterms.\n Make rectangular groups containing 1, 2, 4, 8, ... cells only (powers of two).\n Make each group as large as possible. Larger groups eliminate more variables.\n Every required 1 must be covered at least once. Overlap is allowed when it helps make larger groups.\n Opposite edges are adjacent: left wraps to right, and top wraps to bottom.\n Diagonal cells are not adjacent.\n In"
+  },
+  {
+    "page": 16,
+    "text": " are adjacent: left wraps to right, and top wraps to bottom.\n Diagonal cells are not adjacent.\n In an SOP group, keep only variables whose values stay constant across the group.\n8.2 2-Variable K-Map Layout\nA\\B 0 1\n0 m0 m1\n1 m2 m3\n8.3 3-Variable K-Map Layout\nA\\BC 00 01 11 10\n0 m0 m1 m3 m2\n1 m4 m5 m7 m6\n8.4 4-Variable K-Map Layout\nAB\\CD 00 01 11 10\n00 m0 m1 m3 m2\n01 m4 m5 m7 m6\n11 m12 m13 m15 m14\n10 m8 m9 m11 m10\nWhy Gray-code order?\nThe sequence 00, 01, 11, 10 changes only one bit at a time. Th"
+  },
+  {
+    "page": 16,
+    "text": "10 m8 m9 m11 m10\nWhy Gray-code order?\nThe sequence 00, 01, 11, 10 changes only one bit at a time. That makes adjacent K-map cells differ in only one \nvariable, which is the basis of simplification."
+  },
+  {
+    "page": 17,
+    "text": "AR107 - Basics of Computer Organization | Unit I\nGGSIPU USAR - First Year Minor Exam Notes   |   Page 17\n8.5 Solved K-Map Examples\nSolved Example 8.1 - 2 variables\nQuestion: Simplify F(A,B)=Σm(1,2,3).\nPlace 1s at m1, m2 and m3.\nGroup m2,m3: A is constant 1 => term A.\nGroup m1,m3: B is constant 1 => term B.\nTherefore F=A+B.\nSolved Example 8.2 - 3 variables\nQuestion: Simplify F(A,B,C)=Σm(1,3,5,7).\nThe four minterms are exactly the cells where C=1.\nThey form one group of four.\nA and B change within"
+  },
+  {
+    "page": 17,
+    "text": "he four minterms are exactly the cells where C=1.\nThey form one group of four.\nA and B change within the group; C remains 1.\nTherefore F=C.\nSolved Example 8.3 - 3 variables\nQuestion: Simplify F(A,B,C)=Σm(0,2,4,6,7).\nGroup m0,m2,m4,m6 as a four-cell wrap-around group: C remains 0 => C'.\nGroup m6,m7 as a pair: A=1 and B=1 remain constant => AB.\nTherefore F=C' + AB.\nSolved Example 8.4 - 4 variables\nQuestion: Simplify F(A,B,C,D)=Σm(0,2,5,7,8,10,13,15).\nGroup m0,m2,m8,m10 as a four-cell group using e"
+  },
+  {
+    "page": 17,
+    "text": "uestion: Simplify F(A,B,C,D)=Σm(0,2,5,7,8,10,13,15).\nGroup m0,m2,m8,m10 as a four-cell group using edge adjacency: B=0 and D=0 remain constant => B'D'.\nGroup m5,m7,m13,m15 as a four-cell group: B=1 and D=1 remain constant => BD.\nTherefore F=B'D' + BD (XNOR of B and D).\n8.6 POS Simplification with K-Map\nFor POS, group 0s instead of 1s. Within a 0-group, a variable that remains 0 appears uncomplemented in the \nresulting sum term, while a variable that remains 1 appears complemented.\nSolved Example"
+  },
+  {
+    "page": 17,
+    "text": "ted in the \nresulting sum term, while a variable that remains 1 appears complemented.\nSolved Example 8.5 - POS\nQuestion: Simplify F(A,B)=ΠM(0,2).\nZeros are at m0(00) and m2(10). They form a vertical pair.\nB remains 0 while A changes.\nFor a zero-group in POS, constant B=0 gives sum term (B).\nTherefore F=B.\nK-map self-check\nAfter simplification, test the simplified expression for at least one original 1-row and one original 0-row. This catches \nmany grouping or complement mistakes.\n8.7 Why Groupin"
+  },
+  {
+    "page": 17,
+    "text": "al 1-row and one original 0-row. This catches \nmany grouping or complement mistakes.\n8.7 Why Grouping Simplifies an Expression\nTwo adjacent minterms differ in exactly one variable. When they are ORed, that changing variable disappears: \nA'BC + ABC = BC(A'+A)=BC. A group of 2 removes one variable, a group of 4 removes two variables, and a \ngroup of 8 removes three variables. This is the algebraic reason behind K-map grouping."
+  },
+  {
+    "page": 17,
+    "text": "eason behind K-map grouping."
+  },
+  {
+    "page": 18,
+    "text": "AR107 - Basics of Computer Organization | Unit I\nGGSIPU USAR - First Year Minor Exam Notes   |   Page 18\nGroup size Variables eliminated A term from a 4-variable map can have\n1 0 4 literals\n2 1 3 literals\n4 2 2 literals\n8 3 1 literal\n16 4 constant 1\n8.8 Essential K-Map Techniques\n Use the largest legal groups first; a larger group normally gives fewer literals.\n A cell may belong to more than one group. Overlap is legal and often necessary.\n Four corner cells of a 4-variable map are adjacent "
+  },
+  {
+    "page": 18,
+    "text": "e group. Overlap is legal and often necessary.\n Four corner cells of a 4-variable map are adjacent through both horizontal and vertical wrap-around.\n A group may wrap across the left/right edge or top/bottom edge, but it may not wrap diagonally.\n Every required 1 must be covered for SOP. It is not necessary to use every possible group.\n For POS repeat the same geometry using 0s, then apply the POS complement rule.\nSolved Example 8.6 - 4-variable corner group\nQuestion: Simplify F(A,B,C,D)=Σm("
+  },
+  {
+    "page": 18,
+    "text": " POS complement rule.\nSolved Example 8.6 - 4-variable corner group\nQuestion: Simplify F(A,B,C,D)=Σm(0,2,8,10).\nThe four 1s occupy the four corners when the K-map is drawn in Gray order.\nAll four corners form one wrap-around group of four.\nAcross these cells B=0 and D=0 remain constant; A and C change.\nTherefore F = B'D'.\nSolved Example 8.7 - overlap\nQuestion: Simplify F(A,B,C)=Σm(1,3,5,6,7).\nGroup m1,m3,m5,m7 as a group of four: C=1 remains constant -> C.\nThe uncovered m6 can pair with m7: A=1 a"
+  },
+  {
+    "page": 18,
+    "text": " m1,m3,m5,m7 as a group of four: C=1 remains constant -> C.\nThe uncovered m6 can pair with m7: A=1 and B=1 remain constant -> AB.\nCell m7 is intentionally used in both groups; overlap is legal.\nTherefore F = C + AB.\n8.9 A Complete 4-Variable SOP Example\nSolved Example 8.8\nQuestion: Simplify F(A,B,C,D)=Σm(0,1,2,3,5,7,8,9,10,11).\nMinterms 0,1,2,3,8,9,10,11 form an 8-cell group covering rows AB=00 and AB=10. Here B=0 is constant -> B'.\nMinterms 1,3,5,7 form a 4-cell group. Here A=0 and D=1 remain c"
+  },
+  {
+    "page": 18,
+    "text": "d AB=10. Here B=0 is constant -> B'.\nMinterms 1,3,5,7 form a 4-cell group. Here A=0 and D=1 remain constant -> A'D.\nThe first group already covers m1,m3, but overlap allows the second group to also cover them so that m5,m7 can be \nincluded in a group of four.\nHence F = B' + A'D.\n8.10 POS K-Map Example with Four Variables\nSolved Example 8.9\nQuestion: Simplify F(A,B,C,D)=ΠM(0,1,4,5,10,11,14,15) in POS form.\nGroup zeros m0,m1,m4,m5 as a 4-cell block: A=0 and C=0 remain constant.\nFor a zero-group, c"
+  },
+  {
+    "page": 18,
+    "text": "OS form.\nGroup zeros m0,m1,m4,m5 as a 4-cell block: A=0 and C=0 remain constant.\nFor a zero-group, constant 0 appears uncomplemented, giving (A+C).\nGroup zeros m10,m11,m14,m15: A=1 and C=1 remain constant.\nFor a zero-group, constant 1 appears complemented, giving (A'+C').\nTherefore F=(A+C)(A'+C')."
+  },
+  {
+    "page": 19,
+    "text": "AR107 - Basics of Computer Organization | Unit I\nGGSIPU USAR - First Year Minor Exam Notes   |   Page 19\n8.11 Common K-Map Failure Modes\nMistake Why it is wrong Correction\nUsing 00,01,10,11 order Adjacent cells may differ in two bits Use Gray order 00,01,11,10.\nGroup of 3 or 6 Does not eliminate variables cleanly Only 1,2,4,8,... cells.\nDiagonal grouping Diagonal cells differ in more than one bit Only horizontal/vertical adjacency.\nTiny groups first Produces more literals than necessary Prefer l"
+  },
+  {
+    "page": 19,
+    "text": "Only horizontal/vertical adjacency.\nTiny groups first Produces more literals than necessary Prefer largest legal groups.\nWrong POS complement rule Gives complement of required term For 0-group: 0 -> uncomplemented, 1 -> \ncomplemented.\nExam workflow for a K-map\n1) Write the minterm/maxterm list. 2) Draw Gray-labelled map. 3) Fill 1s or 0s. 4) Mark largest groups. 5) Write one \nsimplified term per group. 6) Combine terms. 7) Verify one 1-row and one 0-row.\n9. Combinational Logic Design\nA combinati"
+  },
+  {
+    "page": 19,
+    "text": "roup. 6) Combine terms. 7) Verify one 1-row and one 0-row.\n9. Combinational Logic Design\nA combinational circuit has no memory: at any instant, its output depends only on the current input values. \nExamples in this unit include adders, subtractors, multiplexers, demultiplexers, encoders, decoders and \ncomparators.\nGeneral Design Procedure\n1.  Understand the problem and identify input/output variables.\n2.  Construct the truth table.\n3.  Write Boolean expressions for each output.\n4.  Simplify the "
+  },
+  {
+    "page": 19,
+    "text": "les.\n2.  Construct the truth table.\n3.  Write Boolean expressions for each output.\n4.  Simplify the expressions using Boolean algebra or K-maps.\n5.  Implement using appropriate gates or standard building blocks.\n6.  Verify the circuit against the truth table.\nCombinational vs sequential\nCombinational: output depends only on present input. Sequential: output also depends on stored past state. \nSequential circuits are covered in Unit II.\n10. Adders\n10.1 Half Adder\nA half adder adds two one-bit inp"
+  },
+  {
+    "page": 19,
+    "text": "ential circuits are covered in Unit II.\n10. Adders\n10.1 Half Adder\nA half adder adds two one-bit inputs A and B. It produces Sum (S) and Carry (C). It does not accept a carry-in \nfrom a previous stage.\nA B Sum S Carry C\n0 0 0 0\n0 1 1 0\n1 0 1 0\n1 1 0 1\nS = A XOR B        C = AB\n10.2 Full Adder\nA full adder adds A, B and an input carry Cin. It produces Sum S and output carry Cout."
+  },
+  {
+    "page": 20,
+    "text": "AR107 - Basics of Computer Organization | Unit I\nGGSIPU USAR - First Year Minor Exam Notes   |   Page 20\nA B Cin S Cout\n0 0 0 0 0\n0 0 1 1 0\n0 1 0 1 0\n0 1 1 0 1\n1 0 0 1 0\n1 0 1 0 1\n1 1 0 0 1\n1 1 1 1 1\nS = A XOR B XOR Cin\nCout = AB + ACin + BCin = AB + Cin(A XOR B)\n10.3 Full Adder Using Two Half Adders\n Half Adder 1 adds A and B: S1=A XOR B, C1=AB.\n Half Adder 2 adds S1 and Cin: S=S1 XOR Cin, C2=S1.Cin.\n Final carry: Cout=C1+C2.\nDesign interpretation\nA full adder can be constructed using two ha"
+  },
+  {
+    "page": 20,
+    "text": "1.Cin.\n Final carry: Cout=C1+C2.\nDesign interpretation\nA full adder can be constructed using two half adders and one OR gate.\nSolved Example 10.1\nQuestion: For A=1, B=1, Cin=1, find full-adder outputs.\nS = 1 XOR 1 XOR 1 = 1.\nCout = AB + ACin + BCin = 1+1+1 = 1 (Boolean OR).\nThe binary addition is 1+1+1 = 11_2, so S=1 and Cout=1.\n10.4 Deriving the Full-Adder Equations\nFrom the truth table, Sum is 1 when an odd number of the three inputs is 1. That is exactly the parity behaviour of \nXOR, so S=A "
+  },
+  {
+    "page": 20,
+    "text": "1 when an odd number of the three inputs is 1. That is exactly the parity behaviour of \nXOR, so S=A XOR B XOR Cin. Carry-out is 1 whenever at least two of the three input bits are 1, giving the \nmajority expression AB + ACin + BCin.\nSolved Example 10.2\nQuestion: Derive Cout in the alternative form AB + Cin(A XOR B).\nStart with Cout = AB + ACin + BCin.\nWrite ACin+BCin = Cin(A+B).\nThe equivalent adder form AB + Cin(A XOR B) is obtained by separating the case A=B=1 into AB; when A and B differ, A \n"
+  },
+  {
+    "page": 20,
+    "text": "er form AB + Cin(A XOR B) is obtained by separating the case A=B=1 into AB; when A and B differ, A \nXOR B=1 and Cin determines the carry.\nThis form directly matches the two-half-adder implementation: C1=AB and C2=Cin(A XOR B).\n10.5 Cascading Full Adders for Multi-Bit Addition\nTo add two multi-bit binary numbers, use one full-adder stage per bit position. The carry-out from a lower position \nbecomes the carry-in of the next higher position. This arrangement is called a ripple-carry adder because "
+  },
+  {
+    "page": 20,
+    "text": "s the carry-in of the next higher position. This arrangement is called a ripple-carry adder because the \ncarry can propagate through successive stages."
+  },
+  {
+    "page": 21,
+    "text": "AR107 - Basics of Computer Organization | Unit I\nGGSIPU USAR - First Year Minor Exam Notes   |   Page 21\nSolved Example 10.3\nQuestion: Add 1011 and 0110 using bit-by-bit carry propagation.\nLSB: 1+0 -> sum 1, carry 0.\nNext: 1+1+0 -> sum 0, carry 1.\nNext: 0+1+1 -> sum 0, carry 1.\nMSB: 1+0+1 -> sum 0, carry 1.\nFinal result = 1 0001 = 17_10, matching 11+6.\nMinor-exam derivation tip\nFor a full-adder design question, a strong answer contains: truth table, canonical expression or K-map reasoning, \nsimp"
+  },
+  {
+    "page": 21,
+    "text": "sign question, a strong answer contains: truth table, canonical expression or K-map reasoning, \nsimplified S and Cout expressions, and the two-half-adder realization.\n11. Subtractors\n11.1 Half Subtractor\nA half subtractor subtracts B from A and produces Difference (D) and Borrow (Bout).\nA B Difference D Borrow Bout\n0 0 0 0\n0 1 1 1\n1 0 1 0\n1 1 0 0\nD = A XOR B        Bout = A'B\n11.2 Full Subtractor\nA full subtractor subtracts B and borrow-in Bin from A. It produces Difference D and borrow-out Bout"
+  },
+  {
+    "page": 21,
+    "text": "A full subtractor subtracts B and borrow-in Bin from A. It produces Difference D and borrow-out Bout.\nA B Bin D Bout\n0 0 0 0 0\n0 0 1 1 1\n0 1 0 1 1\n0 1 1 0 1\n1 0 0 1 0\n1 0 1 0 0\n1 1 0 0 0\n1 1 1 1 1\nD = A XOR B XOR Bin\nBout = A'B + A'Bin + B.Bin\nSolved Example 11.1\nQuestion: For A=0, B=1, Bin=1, find the full-subtractor outputs.\nWe need 0 - 1 - 1. A borrow is required.\nFrom the truth table, D=0 and Bout=1.\nExpression check: D=0 XOR 1 XOR 1=0; Bout=1."
+  },
+  {
+    "page": 21,
+    "text": "Bout=1.\nExpression check: D=0 XOR 1 XOR 1=0; Bout=1."
+  },
+  {
+    "page": 22,
+    "text": "AR107 - Basics of Computer Organization | Unit I\nGGSIPU USAR - First Year Minor Exam Notes   |   Page 22\nAdder vs subtractor memory aid\nHalf adder carry = AB. Half subtractor borrow = A'B. Sum and difference are both XOR for two inputs.\n11.3 Understanding the Borrow Condition\nA borrow is needed when the amount being subtracted from a bit position is larger than the available minuend bit. \nIn a half subtractor, this happens only for A=0, B=1, hence Borrow=A'B. In a full subtractor the incoming bo"
+  },
+  {
+    "page": 22,
+    "text": "f subtractor, this happens only for A=0, B=1, hence Borrow=A'B. In a full subtractor the incoming borrow \nmust also be considered, which creates three conditions that can require a borrow-out.\n11.4 Full Subtractor Using Two Half Subtractors\n Half Subtractor 1 subtracts B from A: D1=A XOR B, B1=A'B.\n Half Subtractor 2 subtracts Bin from D1: D=D1 XOR Bin, B2=D1' * Bin.\n Final borrow is Bout=B1+B2.\n After simplification this is equivalent to Bout=A'B + A'Bin + B Bin.\nSolved Example 11.2\nQuestio"
+  },
+  {
+    "page": 22,
+    "text": ".\n After simplification this is equivalent to Bout=A'B + A'Bin + B Bin.\nSolved Example 11.2\nQuestion: Subtract 0101 from 1001 using binary borrowing.\n1001_2 is 9 and 0101_2 is 5, so the expected result is 4.\nWorking bit by bit from the LSB gives 1001 - 0101 = 0100.\nThe result 0100_2 = 4 confirms the subtraction.\nFor computer hardware, the same subtraction can often be performed by adding the 2's complement of the subtrahend \nrather than using a separate multi-bit subtractor path.\nConnection to "
+  },
+  {
+    "page": 22,
+    "text": "complement of the subtrahend \nrather than using a separate multi-bit subtractor path.\nConnection to signed arithmetic\nThe full subtractor is a direct combinational building block for bit-by-bit subtraction. A CPU may instead reuse an \nadder by complementing B and setting an initial carry-in of 1, implementing A + (2's complement of B). Both \nviewpoints are useful.\n12. Multiplexers (MUX)\nA multiplexer is a many-to-one data selector. It selects one of several input lines and connects it to a singl"
+  },
+  {
+    "page": 22,
+    "text": "xer is a many-to-one data selector. It selects one of several input lines and connects it to a single \noutput according to select inputs.\n12.1 2-to-1 Multiplexer\nSelect S Output Y\n0 I0\n1 I1\nY = S'I0 + SI1\n12.2 4-to-1 Multiplexer\nS1 S0 Selected input\n0 0 I0\n0 1 I1\n1 0 I2\n1 1 I3\nY = S1'S0'I0 + S1'S0 I1 + S1 S0'I2 + S1 S0 I3"
+  },
+  {
+    "page": 23,
+    "text": "AR107 - Basics of Computer Organization | Unit I\nGGSIPU USAR - First Year Minor Exam Notes   |   Page 23\n12.3 Implementing a Boolean Function Using a MUX\nChoose some variables as select inputs. For each select combination, express the required output in terms of the \nremaining variable(s) and connect the corresponding MUX data input.\nSolved Example 12.1\nQuestion: Implement F(A,B,C)=Σm(1,2,6,7) using a 4:1 MUX with A,B as select inputs.\nUse S1=A, S0=B. Check F for each AB combination as C varies."
+  },
+  {
+    "page": 23,
+    "text": "ng a 4:1 MUX with A,B as select inputs.\nUse S1=A, S0=B. Check F for each AB combination as C varies.\nAB=00: rows m0,m1 -> outputs 0,1 => I0=C.\nAB=01: rows m2,m3 -> outputs 1,0 => I1=C'.\nAB=10: rows m4,m5 -> outputs 0,0 => I2=0.\nAB=11: rows m6,m7 -> outputs 1,1 => I3=1.\nConnect I0=C, I1=C', I2=0, I3=1.\n13. Demultiplexers (DEMUX)\nA demultiplexer is a one-to-many data distributor. One data input is routed to one of several outputs according to \nselect inputs.\n13.1 1-to-4 Demultiplexer\nS1 S0 Active "
+  },
+  {
+    "page": 23,
+    "text": "outed to one of several outputs according to \nselect inputs.\n13.1 1-to-4 Demultiplexer\nS1 S0 Active output (receives D)\n0 0 Y0\n0 1 Y1\n1 0 Y2\n1 1 Y3\nY0=D S1'S0'   Y1=D S1'S0   Y2=D S1 S0'   Y3=D S1 S0\nMUX vs DEMUX\nMUX selects one of many inputs to one output. DEMUX routes one input to one of many outputs. Select lines \ndetermine the chosen path in both.\n12.4 General Multiplexer Relationships\nA multiplexer with n select lines can select among 2^n data inputs. Thus a 2:1 MUX needs 1 select line, a "
+  },
+  {
+    "page": 23,
+    "text": "iplexer with n select lines can select among 2^n data inputs. Thus a 2:1 MUX needs 1 select line, a 4:1 \nneeds 2, an 8:1 needs 3, and a 16:1 needs 4. Each data input is ANDed with the select-line minterm that \nchooses it, and all such products are ORed together.\nMUX Data inputs Select lines Output lines\n2:1 2 1 1\n4:1 4 2 1\n8:1 8 3 1\n16:1 16 4 1\n12.5 MUX as a Boolean Function Generator\nA MUX can implement a truth table because its select inputs choose one data entry for each select combination. \n"
+  },
+  {
+    "page": 23,
+    "text": "plement a truth table because its select inputs choose one data entry for each select combination. \nIf all variables are used as select inputs, connect each data input directly to 0 or 1 according to the function value. \nIf one variable is left as a data variable, the required data inputs may become 0, 1, X or X'."
+  },
+  {
+    "page": 24,
+    "text": "AR107 - Basics of Computer Organization | Unit I\nGGSIPU USAR - First Year Minor Exam Notes   |   Page 24\nSolved Example 12.2\nQuestion: Implement F(A,B,C)=Σm(0,1,6,7) using a 4:1 MUX with A,B as select lines.\nAB=00 covers m0,m1; both are 1 -> I0=1.\nAB=01 covers m2,m3; both are 0 -> I1=0.\nAB=10 covers m4,m5; both are 0 -> I2=0.\nAB=11 covers m6,m7; both are 1 -> I3=1.\nSo connect I0=1, I1=0, I2=0, I3=1. The output is independent of C.\n13.2 DEMUX Operation in More Detail\nA DEMUX contains one data inp"
+  },
+  {
+    "page": 24,
+    "text": "1. The output is independent of C.\n13.2 DEMUX Operation in More Detail\nA DEMUX contains one data input and several output paths. For any select code, only the selected path receives \nthe data value D; unselected outputs remain 0. If D is fixed at 1, a DEMUX behaves like a decoder because the \nselect inputs activate exactly one output line.\nSolved Example 13.1\nQuestion: For a 1:4 DEMUX, D=1 and S1S0=10. Find Y0-Y3.\nSelect code 10 chooses output Y2.\nY2=D=1. All other outputs are forced to 0.\nThus "
+  },
+  {
+    "page": 24,
+    "text": "0=10. Find Y0-Y3.\nSelect code 10 chooses output Y2.\nY2=D=1. All other outputs are forced to 0.\nThus Y0Y1Y2Y3 = 0010 when listed in order Y0,Y1,Y2,Y3.\nWhere these blocks are used\nMUX: choose one data source for a shared line. DEMUX: route one source to one destination. Decoder: activate \none line from a binary address. Their equations look related because all are built from select-variable minterms.\n14. Encoders and Decoders\n14.1 Encoder\nAn encoder converts one active input line into a binary cod"
+  },
+  {
+    "page": 24,
+    "text": ".\n14. Encoders and Decoders\n14.1 Encoder\nAn encoder converts one active input line into a binary code. A basic 4-to-2 encoder assumes that exactly one \ninput is active at a time.\nActive input Y1 Y0\nD0 0 0\nD1 0 1\nD2 1 0\nD3 1 1\nY1 = D2 + D3       Y0 = D1 + D3\nLimitation of a basic encoder\nIf more than one input is 1 simultaneously, the output may be ambiguous. Priority encoders solve this by assigning \nprecedence, but the basic encoder is the core syllabus concept.\n14.2 Decoder\nA decoder performs "
+  },
+  {
+    "page": 24,
+    "text": "ng \nprecedence, but the basic encoder is the core syllabus concept.\n14.2 Decoder\nA decoder performs the reverse type of operation: it converts an n-bit binary input into one of up to 2^n active \noutput lines. A 2-to-4 decoder has inputs A,B and outputs Y0-Y3.\nA B Y0 Y1 Y2 Y3\n0 0 1 0 0 0\n0 1 0 1 0 0"
+  },
+  {
+    "page": 25,
+    "text": "AR107 - Basics of Computer Organization | Unit I\nGGSIPU USAR - First Year Minor Exam Notes   |   Page 25\nA B Y0 Y1 Y2 Y3\n1 0 0 0 1 0\n1 1 0 0 0 1\nY0=A'B'   Y1=A'B   Y2=AB'   Y3=AB\n14.3 Function Realization Using a Decoder\nEach decoder output corresponds to a minterm. Therefore a Boolean function in sum-of-minterms form can be \nrealized by ORing the required decoder outputs.\nSolved Example 14.1\nQuestion: Implement F(A,B)=Σm(1,2,3) using a 2-to-4 decoder.\nDecoder outputs correspond to m0, m1, m2 an"
+  },
+  {
+    "page": 25,
+    "text": "tion: Implement F(A,B)=Σm(1,2,3) using a 2-to-4 decoder.\nDecoder outputs correspond to m0, m1, m2 and m3.\nF is 1 for m1,m2,m3.\nTherefore connect Y1,Y2,Y3 to an OR gate: F=Y1+Y2+Y3.\n14.4 Encoder Equations and Ambiguity\nFor the 4-to-2 encoder, Y1 must be 1 when D2 or D3 is active, while Y0 must be 1 when D1 or D3 is active. \nThese observations directly produce Y1=D2+D3 and Y0=D1+D3. The equations assume one-hot input: exactly \none data input is 1.\nSolved Example 14.2\nQuestion: Why is a basic 4-to-"
+  },
+  {
+    "page": 25,
+    "text": "sume one-hot input: exactly \none data input is 1.\nSolved Example 14.2\nQuestion: Why is a basic 4-to-2 encoder ambiguous if D1 and D2 are both 1?\nY1=D2+D3 becomes 1.\nY0=D1+D3 also becomes 1.\nThe output 11 normally indicates D3, even though D3 is actually 0.\nTherefore the basic encoder cannot uniquely represent multiple active inputs; a priority rule is needed in that situation.\n14.5 3-to-8 Decoder\nA 3-to-8 decoder has three input variables and eight outputs. Each output represents one 3-variable "
+  },
+  {
+    "page": 25,
+    "text": "A 3-to-8 decoder has three input variables and eight outputs. Each output represents one 3-variable minterm. \nThis makes it a direct hardware realization of the complete minterm set for three variables.\nABC Active output Minterm\n000 Y0 A'B'C'\n001 Y1 A'B'C\n010 Y2 A'BC'\n011 Y3 A'BC\n100 Y4 AB'C'\n101 Y5 AB'C\n110 Y6 ABC'\n111 Y7 ABC\nSolved Example 14.3\nQuestion: Using a 3-to-8 decoder, realize F(A,B,C)=Σm(1,3,5,6).\nFeed A,B,C to the decoder inputs.\nThe required minterms are available directly as Y1,Y3"
+  },
+  {
+    "page": 25,
+    "text": "Σm(1,3,5,6).\nFeed A,B,C to the decoder inputs.\nThe required minterms are available directly as Y1,Y3,Y5,Y6.\nOR these outputs: F=Y1+Y3+Y5+Y6."
+  },
+  {
+    "page": 26,
+    "text": "AR107 - Basics of Computer Organization | Unit I\nGGSIPU USAR - First Year Minor Exam Notes   |   Page 26\n14.6 Enable Input - Practical Decoder Idea\nMany practical decoders include an enable input. When the decoder is disabled, none of the outputs is selected; \nwhen enabled, normal decoding occurs. Enable inputs are useful when several decoder blocks are combined or \nwhen address decoding must be active only under a specific condition. The exact active-high or active-low \nconvention depends on th"
+  },
+  {
+    "page": 26,
+    "text": "ctive only under a specific condition. The exact active-high or active-low \nconvention depends on the device.\nEncoder versus decoder\nEncoder compresses one active line into a shorter binary code. Decoder expands a binary code into one active line. \nThey are conceptually opposite operations, although real devices may add enable or priority features.\n15. Magnitude Comparators\nA magnitude comparator compares two binary numbers and indicates whether A>B, A=B or A<B. The three \noutputs are mutually e"
+  },
+  {
+    "page": 26,
+    "text": "compares two binary numbers and indicates whether A>B, A=B or A<B. The three \noutputs are mutually exclusive for valid inputs.\n15.1 One-Bit Comparator\nA B A>B A=B A<B\n0 0 0 1 0\n0 1 0 0 1\n1 0 1 0 0\n1 1 0 1 0\nA>B = AB'     A=B = A'B' + AB     A<B = A'B\n15.2 Multi-Bit Comparison Idea\nFor multi-bit numbers, compare the most significant bits first. If they differ, they decide the result. Only when the \nMSBs are equal do we compare the next lower bit, and so on.\nSolved Example 15.1\nQuestion: Compare A"
+  },
+  {
+    "page": 26,
+    "text": "\nMSBs are equal do we compare the next lower bit, and so on.\nSolved Example 15.1\nQuestion: Compare A=1011 and B=1001.\nCompare from MSB: first bit 1=1; second bit 0=0; third bit 1>0.\nThe remaining lower bit cannot change the decision.\nTherefore A>B (11_10 > 9_10).\nHardware intuition\nA comparator is essentially a cascade of equality checks and greater/less decisions beginning at the most \nsignificant bit.\n15.3 Deriving a Two-Bit Comparator\nLet A=A1A0 and B=B1B0. The MSBs A1 and B1 have priority. A"
+  },
+  {
+    "page": 26,
+    "text": "t bit.\n15.3 Deriving a Two-Bit Comparator\nLet A=A1A0 and B=B1B0. The MSBs A1 and B1 have priority. A is greater immediately if A1=1 and B1=0. If the \nMSBs are equal, the LSBs decide. Define E1=A1 XNOR B1 and E0=A0 XNOR B0.\nA = B :  E1 E0\nA > B :  A1 B1' + E1 A0 B0'\nA < B :  A1' B1 + E1 A0' B0\nThese expressions illustrate the general comparison principle: a lower bit matters only when every more \nsignificant bit is equal. Larger comparators repeat the same cascade idea."
+  },
+  {
+    "page": 26,
+    "text": "ignificant bit is equal. Larger comparators repeat the same cascade idea."
+  },
+  {
+    "page": 27,
+    "text": "AR107 - Basics of Computer Organization | Unit I\nGGSIPU USAR - First Year Minor Exam Notes   |   Page 27\nSolved Example 15.2\nQuestion: Compare A=10 and B=01 using the two-bit logic.\nAt the MSB, A1=1 and B1=0, so the term A1B1' is already 1.\nTherefore A>B regardless of the lower bits.\nNumerically, 10_2=2 and 01_2=1, confirming the comparator output.\n15.4 Comparator Output Properties\n For valid binary inputs exactly one of A>B, A=B and A<B is 1.\n Equality can be built from XNOR at each bit follo"
+  },
+  {
+    "page": 27,
+    "text": "ary inputs exactly one of A>B, A=B and A<B is 1.\n Equality can be built from XNOR at each bit followed by AND of all equality results.\n Greater-than and less-than decisions proceed from MSB toward LSB.\n Comparator circuits are used in sorting/control decisions, address checks and arithmetic status logic.\nExam-ready answer structure\nFor a comparator question: define the three outputs, write the 1-bit truth table and expressions, then explain MSB-\nfirst comparison for multi-bit numbers. If aske"
+  },
+  {
+    "page": 27,
+    "text": "1-bit truth table and expressions, then explain MSB-\nfirst comparison for multi-bit numbers. If asked to derive 2-bit logic, explicitly gate the LSB decision with MSB \nequality.\n16. Integrated Solved Problems\nProblem 16.1\nQuestion: Convert (725)_8 to binary and hexadecimal.\nOctal to binary: 7=111, 2=010, 5=101 => 111010101_2.\nGroup into 4 bits for hex: 0001 1101 0101 => 1D5_16.\nAnswer: (725)_8 = (111010101)_2 = (1D5)_16.\nProblem 16.2\nQuestion: Find the 8-bit 2's complement representation of -73."
+  },
+  {
+    "page": 27,
+    "text": "111010101)_2 = (1D5)_16.\nProblem 16.2\nQuestion: Find the 8-bit 2's complement representation of -73.\n73_10 = 01001001_2.\nInvert => 10110110; add 1 => 10110111.\nAnswer: -73 = 10110111 in 8-bit 2's complement.\nProblem 16.3\nQuestion: For F(A,B,C)=Σm(0,2,3,6,7), obtain a simplified SOP using K-map.\nGroup m2,m3,m6,m7 as a group of four: B remains 1 => B.\nGroup m0,m2 as a pair: A=0 and C=0 remain constant => A'C'.\nTherefore F = B + A'C'.\nProblem 16.4\nQuestion: Design a circuit whose output is 1 when e"
+  },
+  {
+    "page": 27,
+    "text": "nt => A'C'.\nTherefore F = B + A'C'.\nProblem 16.4\nQuestion: Design a circuit whose output is 1 when exactly one of A and B is 1.\nTruth table gives output 1 for 01 and 10.\nCanonical SOP = A'B + AB'.\nThis is exactly XOR: F=A XOR B.\nUse one XOR gate.\nProblem 16.5\nQuestion: A 4:1 MUX has I0=0, I1=1, I2=1, I3=0. Find the output function in terms of S1,S0.\nY=S1'S0'I0 + S1'S0I1 + S1S0'I2 + S1S0I3.\nSubstitute data values: Y=S1'S0 + S1S0'.\nTherefore Y=S1 XOR S0."
+  },
+  {
+    "page": 27,
+    "text": "ute data values: Y=S1'S0 + S1S0'.\nTherefore Y=S1 XOR S0."
+  },
+  {
+    "page": 28,
+    "text": "AR107 - Basics of Computer Organization | Unit I\nGGSIPU USAR - First Year Minor Exam Notes   |   Page 28\nProblem 16.6\nQuestion: Using a 2-to-4 decoder, realize F(A,B)=A+B.\nA+B is 1 for input combinations 01,10,11 => minterms 1,2,3.\nSo F=Σm(1,2,3).\nOR decoder outputs Y1, Y2 and Y3.\nProblem 16.7\nQuestion: Design a 3-input majority function: output 1 when at least two of A,B,C are 1.\nThe output is 1 for 011,101,110,111 -> F=Σm(3,5,6,7).\nK-map grouping gives terms AB, AC and BC.\nTherefore F=AB+AC+BC"
+  },
+  {
+    "page": 28,
+    "text": "for 011,101,110,111 -> F=Σm(3,5,6,7).\nK-map grouping gives terms AB, AC and BC.\nTherefore F=AB+AC+BC.\nThis is the same form as the carry-out of a full adder, because carry occurs when at least two of A,B,Cin are 1.\nProblem 16.8\nQuestion: Implement F(A,B,C)=A'C+BC using a 3-to-8 decoder.\nExpand A'C: it is 1 for A=0,C=1 with either B -> minterms m1,m3.\nBC is 1 for B=1,C=1 with either A -> minterms m3,m7.\nCombine duplicates: F=Σm(1,3,7).\nOR decoder outputs Y1,Y3,Y7.\n17. One-Page Concept Revision\nTo"
+  },
+  {
+    "page": 28,
+    "text": "3,m7.\nCombine duplicates: F=Σm(1,3,7).\nOR decoder outputs Y1,Y3,Y7.\n17. One-Page Concept Revision\nTopic Must remember\nBase-r value Digit at position i contributes digit * r^i.\nBinary-octal Group 3 bits per octal digit.\nBinary-hex Group 4 bits per hex digit.\n1's complement Invert all bits.\n2's complement Invert all bits and add 1.\nn-bit signed range -2^(n-1) to +2^(n-1)-1.\nBCD Encode each decimal digit separately using 4 bits.\nGray Adjacent codes differ by one bit; binary->Gray uses adjacent XOR."
+  },
+  {
+    "page": 28,
+    "text": "igit separately using 4 bits.\nGray Adjacent codes differ by one bit; binary->Gray uses adjacent XOR.\nDe Morgan (A+B)'=A'B' and (AB)'=A'+B'.\nCanonical SOP Sum of minterms for rows where F=1.\nCanonical POS Product of maxterms for rows where F=0.\nK-map Group powers of two; largest groups first; wrap-around allowed.\nHalf adder S=A XOR B, C=AB.\nFull adder S=A XOR B XOR Cin; Cout=AB+ACin+BCin.\nHalf subtractor D=A XOR B, Borrow=A'B.\nMUX Many inputs -> one output.\nDEMUX One input -> many outputs.\nEncode"
+  },
+  {
+    "page": 28,
+    "text": "ractor D=A XOR B, Borrow=A'B.\nMUX Many inputs -> one output.\nDEMUX One input -> many outputs.\nEncoder One active input -> binary code.\nDecoder Binary code -> one active output.\nComparator Produces A>B, A=B, A<B outputs."
+  },
+  {
+    "page": 29,
+    "text": "AR107 - Basics of Computer Organization | Unit I\nGGSIPU USAR - First Year Minor Exam Notes   |   Page 29\n18. Common Mistakes to Avoid\n Reading repeated-division remainders from top to bottom instead of bottom to top.\n Forgetting that BCD encodes each decimal digit separately.\n Using ordinary binary range 0 to 2^n-1 for signed 2's complement questions.\n Confusing minterm and maxterm complement rules.\n Using binary order 00,01,10,11 on K-map columns instead of Gray order 00,01,11,10.\n Groupi"
+  },
+  {
+    "page": 29,
+    "text": "rules.\n Using binary order 00,01,10,11 on K-map columns instead of Gray order 00,01,11,10.\n Grouping diagonal K-map cells or making groups of 3, 6, etc. instead of powers of two.\n Forgetting wrap-around adjacency on K-map edges.\n Writing a full-adder truth table without Cin or a full-subtractor table without Bin.\n Interchanging MUX and DEMUX directions.\n Calling XOR a universal gate. NAND and NOR are the universal gates in this syllabus.\n19. Minor-Exam Question Bank\nUse these as self-test "
+  },
+  {
+    "page": 29,
+    "text": "d NOR are the universal gates in this syllabus.\n19. Minor-Exam Question Bank\nUse these as self-test questions. Try them without notes first, then check the answer cues in the next section.\nA. Very Short / Concept Questions\n1. Define radix and positional number system.\n2. Why is hexadecimal convenient for representing binary data?\n3. Differentiate pure binary and BCD representation.\n4. State the range of an n-bit 2's complement number.\n5. Why is Gray code called a unit-distance code?\n6. State bot"
+  },
+  {
+    "page": 29,
+    "text": "nge of an n-bit 2's complement number.\n5. Why is Gray code called a unit-distance code?\n6. State both De Morgan theorems.\n7. What is a minterm? What is a maxterm?\n8. Why are NAND and NOR called universal gates?\n9. What is wrap-around adjacency in a K-map?\n10. Differentiate a MUX and DEMUX.\n11. State one limitation of a basic encoder.\n12. What three outputs does a magnitude comparator produce?\nB. Numerical / Design Questions\n1. Convert (753.4)_8 to binary and hexadecimal.\n2. Convert (9B.6)_16 to "
+  },
+  {
+    "page": 29,
+    "text": "umerical / Design Questions\n1. Convert (753.4)_8 to binary and hexadecimal.\n2. Convert (9B.6)_16 to binary and decimal.\n3. Represent -91 in 8-bit 2's complement.\n4. Perform 52-77 using 8-bit 2's complement arithmetic.\n5. Encode decimal 407 in BCD.\n6. Convert binary 110101 to Gray and convert the result back to binary.\n7. Simplify F=A+A'B+AB using Boolean algebra.\n8. Write canonical SOP and POS for a 3-variable truth table with F=1 at rows 0,2,6,7.\n9. Simplify F(A,B,C)=Σm(0,1,2,3,6,7) using K-map"
+  },
+  {
+    "page": 29,
+    "text": " a 3-variable truth table with F=1 at rows 0,2,6,7.\n9. Simplify F(A,B,C)=Σm(0,1,2,3,6,7) using K-map.\n10. Simplify F(A,B,C,D)=Σm(0,1,2,3,8,9,10,11) using K-map.\n11. Derive Sum and Carry expressions of a full adder.\n12. Derive Difference and Borrow expressions of a half subtractor.\n13. Implement F(A,B,C)=Σm(0,2,5,7) using a 4:1 MUX.\n14. Use a 3-to-8 decoder concept to realize F(A,B,C)=Σm(1,3,5,6).\n15. Write the truth table and expressions for a one-bit comparator."
+  },
+  {
+    "page": 29,
+    "text": "15. Write the truth table and expressions for a one-bit comparator."
+  },
+  {
+    "page": 30,
+    "text": "AR107 - Basics of Computer Organization | Unit I\nGGSIPU USAR - First Year Minor Exam Notes   |   Page 30\n20. Answer Cues for the Practice Bank\nA. Concept Cues\nQuestion Cue\nRadix Number of distinct digit symbols; positional value depends on \ndigit position and powers of the base.\nHex convenience Each hex digit maps exactly to 4 binary bits, making long binary \nstrings compact.\nBinary vs BCD Pure binary encodes the whole value; BCD separately encodes \neach decimal digit.\n2's complement range -2^(n"
+  },
+  {
+    "page": 30,
+    "text": "nary encodes the whole value; BCD separately encodes \neach decimal digit.\n2's complement range -2^(n-1) to +2^(n-1)-1.\nGray code Consecutive code words differ in exactly one bit.\nDe Morgan (A+B)'=A'B'; (AB)'=A'+B'.\nMinterm/maxterm Minterm is 1 for one row; maxterm is 0 for one row.\nUniversal gate NAND or NOR alone can create NOT, AND and OR.\nWrap-around Opposite K-map edges are adjacent.\nMUX/DEMUX MUX many-to-one; DEMUX one-to-many.\nEncoder limitation Multiple simultaneous active inputs cause am"
+  },
+  {
+    "page": 30,
+    "text": " MUX many-to-one; DEMUX one-to-many.\nEncoder limitation Multiple simultaneous active inputs cause ambiguity in a basic \nencoder.\nComparator A>B, A=B and A<B.\nB. Numerical / Design Final Answers\nNo. Final answer / cue\n1 753.4_8 = 111101011.100_2 = 1EB.8_16.\n2 9B.6_16 = 10011011.0110_2 = 155.375_10.\n3 -91 (8-bit) = 10100101.\n4 52-77 = -25; 8-bit result 11100111.\n5 407 BCD = 0100 0000 0111.\n6 110101_2 -> Gray 101111; converting back gives 110101.\n7 A + A'B + AB = A+B.\n8 SOP=Σm(0,2,6,7); POS=ΠM(1,3,"
+  },
+  {
+    "page": 30,
+    "text": "2 -> Gray 101111; converting back gives 110101.\n7 A + A'B + AB = A+B.\n8 SOP=Σm(0,2,6,7); POS=ΠM(1,3,4,5).\n9 F=A' + B.\n10 F=B'.\n11 S=A XOR B XOR Cin; Cout=AB+ACin+BCin.\n12 D=A XOR B; Borrow=A'B.\n13 With A,B as selects: I0=C', I1=C', I2=C, I3=C.\n14 OR decoder outputs Y1,Y3,Y5,Y6.\n15 A>B=AB'; A=B=A'B'+AB; A<B=A'B."
+  },
+  {
+    "page": 31,
+    "text": "AR107 - Basics of Computer Organization | Unit I\nGGSIPU USAR - First Year Minor Exam Notes   |   Page 31\n21. Last-Minute Revision Sheet\nConversions\nBase -> decimal: weighted sum. Decimal integer -> base: repeated division, read remainders upward. Decimal \nfraction -> base: repeated multiplication. Binary<->octal: 3-bit groups. Binary<->hex: 4-bit groups.\nComplements\n1's complement = invert. 2's complement = invert + 1. n-bit signed range = -2^(n-1) to +2^(n-1)-1. For subtraction A-\nB, add A to t"
+  },
+  {
+    "page": 31,
+    "text": "mplement = invert + 1. n-bit signed range = -2^(n-1) to +2^(n-1)-1. For subtraction A-\nB, add A to the 2's complement of B.\nBoolean + K-map\nRemember identity, complement, absorption, distributive and De Morgan laws. SOP uses minterms/1s; POS uses \nmaxterms/0s. K-map group sizes: 1,2,4,8,...; use Gray order 00,01,11,10; edges wrap.\nCombinational circuits\nHalf adder: S=A XOR B, C=AB. Full adder: S=A XOR B XOR Cin, Cout=AB+ACin+BCin. Half subtractor: D=A XOR \nB, Borrow=A'B. MUX=many-to-one; DEMUX=o"
+  },
+  {
+    "page": 31,
+    "text": " XOR B XOR Cin, Cout=AB+ACin+BCin. Half subtractor: D=A XOR \nB, Borrow=A'B. MUX=many-to-one; DEMUX=one-to-many; encoder=input-to-code; decoder=code-to-output; \ncomparator gives >,=,<.\nFinal 30-Minute Checklist\n Do one decimal/binary/octal/hex conversion in each direction.\n Do one 2's complement subtraction where the answer is negative.\n Recite De Morgan laws and universal-gate realizations.\n Solve one 3-variable and one 4-variable K-map.\n Write half/full adder and half/full subtractor truth"
+  },
+  {
+    "page": 31,
+    "text": "olve one 3-variable and one 4-variable K-map.\n Write half/full adder and half/full subtractor truth tables from memory.\n Write 4:1 MUX and 2:4 decoder selection/truth tables.\n Check that you can explain encoder, decoder, comparator, MUX and DEMUX in one sentence each.\nEnd of Unit I Notes\nAR107 - Basics of Computer Organization | Unit I - Digital Logic Fundamentals"
+  }
+]

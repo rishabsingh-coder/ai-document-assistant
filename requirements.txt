@@ -1,0 +1,7 @@
+pypdf
+sentence-transformers<4
+transformers<5
+numpy<2
+openai
+python-dotenv
+streamlit
