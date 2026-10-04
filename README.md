@@ -108,12 +108,10 @@ and retrieved passage so that the answer can be verified.
 
 ```text
 ai-document-assistant/
-│
 ├── data/
 │   ├── document.pdf
 │   ├── chunks.json
 │   └── embeddings.npy
-│
 ├── src/
 │   ├── app.py
 │   ├── extract_text.py
@@ -123,12 +121,14 @@ ai-document-assistant/
 │   ├── test_llm.py
 │   ├── qa_pipeline.py
 │   └── build_index.py
-│
-├── .env.example
+├── screenshots/
+│   └── demo.png
+├── requirements.txt
+├── .env
 ├── .gitignore
 ├── DECISIONS.md
 ├── README.md
-└── requirements.txt
+└── AI_USAGE.md
 ```
 ## Running the Project
 
